@@ -6,10 +6,10 @@
 tablero = [
 [' ', 'p', ' ', 'p', ' ', 'p', ' ', 'p'],
 ['p', ' ', 'p', ' ', 'p', ' ', 'p', ' '],
-[' ', 'p', ' ', 'p', ' ', 'p', ' ', 'p'],
 [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
 [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-['P', ' ', 'P', ' ', 'P', ' ', 'P', ' '],
+[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+[' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
 [' ', 'P', ' ', 'P', ' ', 'P', ' ', 'P'],
 ['P', ' ', 'P', ' ', 'P', ' ', 'P', ' ']
 ]
@@ -60,7 +60,7 @@ def mover_peon(tablero, x_inicial, y_inicial, x_final, y_final):
     :return: [][] tablero resultante
     '''
 
-    if (0 < x_final <= 7) and (0 < y_final <= 7):
+    if (0 <= x_final <= 7) and (0 <= y_final <= 7):
         esPeon = tablero[x_inicial][y_inicial] in 'pP'
         deltaX = abs(x_final - x_inicial)
         deltaY = abs(y_final - y_inicial)
@@ -127,5 +127,27 @@ def mover_peon(tablero, x_inicial, y_inicial, x_final, y_final):
     else:
         print("La ficha a mover no es un peon.")
 
-if __name__ == '__main__':
-    mover_peon(tablero, 2,1,4,3)
+def mover_peonDiego(tablero, x_inicial, y_inicial, x_final, y_final):
+    esPeon = tablero[x_inicial][y_inicial] in 'pP'
+    ficha = tablero[x_inicial][y_inicial];
+    posFinal = tablero[x_final][y_final];
+    print(ficha)
+    print(posFinal)
+    #validación de movimiento y coordenadas válidas
+    if ((0 <= x_final <= 7) and (0 <= y_final <= 7)) and ((0 <= x_inicial <= 7) and (0 <= y_inicial <= 7)) and ((x_inicial+1==x_final and y_inicial+1==y_final and ficha=='p') or (x_inicial-1==x_final and y_inicial+1==y_final and ficha=='p') or (x_inicial-1==x_final and y_inicial-1==y_final and ficha=='P') or (x_inicial+1==x_final and y_inicial-1==y_final and ficha=='P')):
+        if esPeon:
+            if posFinal == ' ':
+                print("Peon " + ficha + " salta de la posición x: " + str(x_inicial) + " y: " + str(y_inicial) + " a la posición x: " + str(x_final) + " y: " + str(y_final))
+                tablero[x_inicial][y_inicial] = " "
+                tablero[x_final][y_final] = ficha
+            elif posFinal in ficha:
+                print("No se puede saltar fichas del mismo color")
+            elif posFinal in 'pP':
+                print("INCOMPLETO programar lógica de salto de ficha de diferente color")
+    else:
+        print("Movimiento no valido o coordenadas fuera del tablero")
+    return tablero
+
+print(tablero_a_cadena(tablero))
+mover_peonDiego(tablero, 1,0,2,1)
+print(tablero_a_cadena(tablero))
