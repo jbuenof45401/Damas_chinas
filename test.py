@@ -1,126 +1,6 @@
 from unittest import TestCase
 from Movimientos_damas_chinas import *
-
-
-tablero = [
-        [' ', 'p', ' ', 'p', ' ', 'p', ' ', 'p'],
-        ['p', ' ', 'p', ' ', 'p', ' ', 'p', ' '],
-        [' ', 'p', ' ', 'p', ' ', 'p', ' ', 'p'],
-        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-        [' ', 'P', ' ', ' ', ' ', ' ', ' ', ' '],
-        ['P', ' ', ' ', ' ', 'P', ' ', 'P', ' '],
-        [' ', 'P', ' ', 'P', ' ', 'P', ' ', 'P'],
-        ['P', ' ', 'P', ' ', 'P', ' ', 'P', ' ']
-    ]
-
-tablero_secundario = [
-        [' ', 'p', ' ', 'p', ' ', 'p', ' ', 'p'],
-        ['p', ' ', 'p', ' ', 'p', ' ', 'p', ' '],
-        [' ', 'p', ' ', 'p', ' ', 'p', ' ', 'p'],
-        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-        ['P', ' ', 'P', ' ', 'P', ' ', 'P', ' '],
-        [' ', 'P', ' ', 'P', ' ', 'P', ' ', 'P'],
-        ['P', ' ', 'P', ' ', 'P', ' ', 'P', ' ']
-    ]
-
-tableropieza = [
-        [' ', 'p', ' ', 'p', ' ', 'p', ' ', 'p'],
-        ['p', ' ', 'p', ' ', 'p', ' ', 'p', ' '],
-        [' ', 'p', ' ', 'p', ' ', 'p', ' ', 'p'],
-        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-        ['P', ' ', 'P', ' ', 'P', ' ', 'P', ' '],
-        [' ', 'P', ' ', 'P', ' ', 'P', ' ', 'P'],
-        ['P', ' ', 'P', ' ', 'P', ' ', 'P', ' ']
-    ]
-
-    #tableros peón
-
-#movimiento inicial
-tablerop = [
-        [' ', 'p', ' ', 'p', ' ', 'p', ' ', 'p'],
-        ['p', ' ', 'p', ' ', 'p', ' ', 'p', ' '],
-        [' ', 'p', ' ', 'p', ' ', 'p', ' ', 'p'],
-        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-        [' ', 'P', ' ', ' ', ' ', ' ', ' ', ' '],
-        ['P', ' ', ' ', ' ', 'P', ' ', 'P', ' '],
-        [' ', 'P', ' ', 'P', ' ', 'P', ' ', 'P'],
-        ['P', ' ', 'P', ' ', 'P', ' ', 'P', ' ']
-    ]
-
-#movimiento inicial del otro equipo
-tablerop1 =[
-        [' ', 'p', ' ', 'p', ' ', 'p', ' ', 'p'],
-        ['p', ' ', 'p', ' ', 'p', ' ', 'p', ' '],
-        [' ', 'p', ' ', ' ', ' ', 'p', ' ', 'p'],
-        [' ', ' ', 'p', ' ', ' ', ' ', ' ', ' '],
-        [' ', 'P', ' ', ' ', ' ', ' ', ' ', ' '],
-        ['P', ' ', ' ', ' ', 'P', ' ', 'P', ' '],
-        [' ', 'P', ' ', 'P', ' ', 'P', ' ', 'P'],
-        ['P', ' ', 'P', ' ', 'P', ' ', 'P', ' ']
-    ]
-
-#tablero inicial comer pieza
-tablerop2 = [
-        [' ', 'p', ' ', 'p', ' ', 'p', ' ', 'p'],
-        ['p', ' ', 'p', ' ', 'p', ' ', 'p', ' '],
-        [' ', 'p', ' ', ' ', ' ', 'p', ' ', 'p'],
-        [' ', ' ', 'p', ' ', ' ', ' ', ' ', ' '],
-        [' ', 'P', ' ', ' ', ' ', ' ', ' ', ' '],
-        ['P', ' ', ' ', ' ', 'P', ' ', 'P', ' '],
-        [' ', 'P', ' ', 'P', ' ', 'P', ' ', 'P'],
-        ['P', ' ', 'P', ' ', 'P', ' ', 'P', ' ']
-    ]
-
-#tablero final comer pieza y tablero de camino bloqueado por una pieza
-tablerop3 = [
-        [' ', 'p', ' ', 'p', ' ', 'p', ' ', 'p'],
-        ['p', ' ', 'p', ' ', 'p', ' ', 'p', ' '],
-        [' ', 'p', ' ', 'P', ' ', 'p', ' ', 'p'],
-        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-        ['P', ' ', ' ', ' ', 'P', ' ', 'P', ' '],
-        [' ', 'P', ' ', 'P', ' ', 'P', ' ', 'P'],
-        ['P', ' ', 'P', ' ', 'P', ' ', 'P', ' ']
-    ]
-
-#Tablero inicial doblar por pieza reina
-tablerop4 = [
-        [' ', 'p', ' ', 'p', ' ', ' ', ' ', ' '],
-        [' ', ' ', ' ', ' ', 'p', ' ', 'p', ' '],
-        [' ', ' ', ' ', 'p', ' ', 'p', ' ', 'P'],
-        ['p', ' ', 'p', ' ', ' ', ' ', ' ', ' '],
-        [' ', ' ', ' ', ' ', ' ', ' ', ' ', 'P'],
-        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-        [' ', 'P', ' ', 'P', ' ', ' ', ' ', 'P'],
-        ['P', ' ', 'P', ' ', 'P', ' ', 'P', ' ']
-    ]
-
-#Tablero final cambiar pieza por pieza Reina e inicial de comer por Reina
-tablerop5 = [
-        [' ', 'p', ' ', 'p', ' ', 'R', ' ', ' '],
-        [' ', ' ', ' ', ' ', 'p', ' ', ' ', ' '],
-        [' ', ' ', ' ', 'p', ' ', 'p', ' ', ' '],
-        ['p', ' ', 'p', ' ', ' ', ' ', ' ', ' '],
-        [' ', ' ', ' ', ' ', ' ', ' ', ' ', 'P'],
-        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-        [' ', 'P', ' ', 'P', ' ', ' ', ' ', 'P'],
-        ['P', ' ', 'P', ' ', 'P', ' ', 'P', ' ']
-    ]
-
-# Tablero final comer por reina
-tablerop6 = [
-        [' ', 'p', ' ', 'p', ' ', ' ', ' ', ' '],
-        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-        [' ', ' ', ' ', ' ', ' ', 'p', ' ', ' '],
-        ['p', ' ', 'R', ' ', ' ', ' ', ' ', ' '],
-        [' ', ' ', ' ', 'p', ' ', ' ', ' ', 'P'],
-        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-        [' ', 'P', ' ', 'P', ' ', ' ', ' ', 'P'],
-        ['P', ' ', 'P', ' ', 'P', ' ', 'P', ' ']
-    ]
-
+from test1 import *
 
 class Test_movimientos(TestCase):
 
@@ -140,31 +20,37 @@ class Test_movimientos(TestCase):
         #pruebas unitarias de la pieza
 
     def test_mover_pieza(self):
-        dado = [tablero,1,1,3,1]
+        dado = [tablero,5,3,4,2]
         espero = [tablerop]
         obtengo = mover_pieza(dado)
         self.assertEquals(espero, obtengo)
 
     def test_mover_pieza(self):
-        dado = [tablerop,1,4,2,4]
+        dado = [tablerop,2,4,3,3]
         espero = [tablerop1]
         obtengo = mover_pieza(dado)
         self.assertEquals(espero, obtengo)
 
     def test_mover_pieza(self):
-        dado = [tablerop2,4,1,3,2]
+        dado = [tablerop2,4,2,2,4]
         espero = [tablerop3]
         obtengo = mover_pieza(dado)
         self.assertEquals(espero, obtengo)
 
     def test_mover_pieza(self):
-        dado = [tablerop3,7,3,7.4]
+        dado = [tablerop3,2,4,0,2]
         espero = "camino bloqueado"
         obtengo = mover_pieza(dado)
         self.assertEquals(espero, obtengo)
 
     def test_cambiar_pieza(self):
-        dado = [tablerop4,"Q"]
+        dado = [tablerop4,2,7,0,5]
         espero = [tablerop5]
+        obtengo = mover_pieza(dado)
+        self.assertEquals(espero, obtengo)
+
+    def test_mover_reina(self):
+        dado = [tablerop5,0,5,0,5]
+        espero = [tablerop6]
         obtengo = mover_pieza(dado)
         self.assertEquals(espero, obtengo)
