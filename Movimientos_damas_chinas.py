@@ -1,4 +1,6 @@
 import math as m
+from  test1 import *
+
 #PENDIENTES:
 # 1. Pruebas
 # 2. Regla de matar consecutivamente
@@ -19,8 +21,8 @@ def tablero_a_cadena(tablero):
     """
     (list of str) -> str
     recibimos un tablero o diccionario y devolvemos una cadena
-    :param tablero: el tablero con la posicionde cada pieza
-    :return: dict el tablero con la nueva posicion de las piezas
+    :param tablero: el tablero con la posicionde cada peon
+    :return: dict el tablero con la nueva posicion de las peons
     """
 
     cadena = ""
@@ -28,29 +30,29 @@ def tablero_a_cadena(tablero):
         cadena += str(fila) + "\n"
     return cadena
 
-def obtener_nombre_pieza(simbolo):
+def obtener_nombre_peon(simbolo):
     """
     (str) -> str
-    >>> obtener_nombre_pieza('p')
-    'pieza blancas'
+    >>> obtener_nombre_peon('p')
+    'peon blancas'
 
-    >>> obtener_nombre_pieza('P')
-    'pieza Negras'
+    >>> obtener_nombre_peon('P')
+    'peon Negras'
 
-    Retorna el nombre de la pieza del ajedrez dado su simbolo
-    :param simbolo: la representacion de la pieza segun el enunciado
-    :return: El nombre y color de la pieza
+    Retorna el nombre de la peon del ajedrez dado su simbolo
+    :param simbolo: la representacion de la peon segun el enunciado
+    :return: El nombre y color de la peon
     """
     tipo = 'Negras'
     if simbolo.islower():
         tipo = 'blancas'
     retorno = simbolo.lower()
     if retorno == 'p':
-        return 'pieza '+tipo
+        return 'peon '+tipo
     if retorno == 'r':
         return 'Reina '+tipo
     else:
-        return 'No es una pieza'
+        return 'No es una peon'
 
 def equipoFicha(ficha):
     '''
@@ -66,7 +68,7 @@ def equipoFicha(ficha):
     :param ficha: str: la ficha a ser evaluada
     :return: bool: Blanca:False,Negra:True
     '''
-    if(ficha in 'pP'):
+    if(ficha in 'pPrR'):
         return ficha.isupper()
     else:
         raise TypeError("la ficha no es valida")
@@ -74,6 +76,7 @@ def equipoFicha(ficha):
 def mover_peon(tablero, x_inicial, y_inicial, x_final, y_final):
     tablero_resultante = tablero
     esPeon = tablero[x_inicial][y_inicial] in 'pP'
+    esReina = tablero[x_inicial][y_inicial] in 'rR'
     ficha = tablero[x_inicial][y_inicial]
     posFinal = tablero[x_final][y_final]
     equipo = equipoFicha(ficha)
@@ -89,11 +92,13 @@ def mover_peon(tablero, x_inicial, y_inicial, x_final, y_final):
         debecomer = True
 
     absolute_sent=m.sqrt(sentido_x**2)
-    if(absolute_sent!=1  and  absolute_sent%2!=0 ):
-        raise TypeError("Movimiento invalido")
+    print(int(absolute_sent)%2)
+    if int(absolute_sent)!=1:
+        if int(absolute_sent)%2!=0:
+            raise TypeError("Movimiento invalido")
 
 
-    if esPeon==False:
+    if  not esPeon and not esReina:
         raise Exception("Ficha invalida")
 
     #validación de movimiento y coordenadas válidas
@@ -103,8 +108,18 @@ def mover_peon(tablero, x_inicial, y_inicial, x_final, y_final):
                     print("Peon " + ficha + " salta de la posición x: " + str(x_inicial) + " y: " + str(y_inicial) + " a la posición x: " + str(x_final) + " y: " + str(y_final))
                     tablero_resultante[x_inicial][y_inicial] = ' '
                     tablero_resultante[x_final][y_final] = ficha
+                    if equipo:
+                        if(x_final==0):
+                            tablero_resultante[x_final][y_final]="R"
+
+                    else:
+                        if(x_final==7):
+                            tablero_resultante[x_final][y_final] = "r"
+
+
                     if debecomer:
-                        for i in range(int(absolute_sent+1)):
+                        sb = absolute_sent+1
+                        for i in range(int(sb)):
                             if i ==0:
                                 continue
                             if(sentido_x>0 and sentido_y>0):
@@ -126,7 +141,6 @@ def mover_peon(tablero, x_inicial, y_inicial, x_final, y_final):
     else:
         raise Exception("Movimiento invalido!")
 
-    print(tablero_a_cadena(tablero_resultante))
     return tablero_resultante
 mover_peon(tablero, 1,0,5,4)
 

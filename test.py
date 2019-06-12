@@ -4,53 +4,39 @@ from test1 import *
 
 class Test_movimientos(TestCase):
 
-    def test_tablero_a_cadena(self):
-        dado = [tablero]
-        espero = [tablero]
-        obtengo = tablero_a_cadena(dado)
-        self.assertEquals(espero, obtengo)
 
-    def test_obtener_nombre_pieza(self):
+    def test_obtener_nombre_peon(self):
         dado = "p"
-        espero = "pieza blanca"
-        obtengo = obtener_nombre_pieza(dado)
+        espero = "peon blancas"
+        obtengo = obtener_nombre_peon(dado)
         self.assertEquals(espero, obtengo)
 
 
-        #pruebas unitarias de la pieza
+        #pruebas unitarias de la peon
 
-    def test_mover_pieza(self):
-        dado = [tablero,5,3,4,2]
-        espero = [tablerop]
-        obtengo = mover_pieza(dado)
+    def test_mover_peon(self):
+        dado = [tablero,5,2,4,1]
+        espero = tablerop
+        obtengo = mover_peon(tablero,5,2,4,1)
         self.assertEquals(espero, obtengo)
 
-    def test_mover_pieza(self):
+    def test_mover_peon(self):
         dado = [tablerop,2,4,3,3]
-        espero = [tablerop1]
-        obtengo = mover_pieza(dado)
-        self.assertEquals(espero, obtengo)
+        espero = tablerop1
+        obtengo = mover_peon(tablerop,2,4,3,3)
+        self.assertEqual(espero, obtengo)
 
-    def test_mover_pieza(self):
+    def test_mover_peon(self):
         dado = [tablerop2,4,2,2,4]
-        espero = [tablerop3]
-        obtengo = mover_pieza(dado)
-        self.assertEquals(espero, obtengo)
+        espero = tablerop3
+        obtengo = mover_peon(tablerop2,4,2,2,4)
+        self.assertEqual(espero, obtengo)
 
-    def test_mover_pieza(self):
+    def test_mover_peon(self):
         dado = [tablerop3,2,4,0,2]
         espero = "camino bloqueado"
-        obtengo = mover_pieza(dado)
-        self.assertEquals(espero, obtengo)
+        self.assertRaises(TypeError,mover_peon,tablerop3,2,4,0,2)
 
-    def test_cambiar_pieza(self):
-        dado = [tablerop4,2,7,0,5]
-        espero = [tablerop5]
-        obtengo = mover_pieza(dado)
-        self.assertEquals(espero, obtengo)
 
-    def test_mover_reina(self):
-        dado = [tablerop5,0,5,0,5]
-        espero = [tablerop6]
-        obtengo = mover_pieza(dado)
-        self.assertEquals(espero, obtengo)
+
+
